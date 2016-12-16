@@ -38,5 +38,29 @@ $check = new QualityCheck(
    true // Use word list check?
 );
 
-echo '222233334444: ', $check->checkQuality( '222233334444' );
+$qualityNunber = $check->checkQuality( '222233334444' );
+
+switch( $qualityNunber )
+{
+   case PasswordQuality::HIGH:
+      $qualityName = 'Best/Highest';
+      break;
+   case PasswordQuality::GOOD:
+         $qualityName = 'Good';
+         break;
+   case PasswordQuality::MEDIUM:
+         $qualityName = 'Middle';
+         break;
+   case PasswordQuality::BAD:
+         $qualityName = 'Bad';
+         break;
+   case PasswordQuality::VARY_BAD:
+         $qualityName = 'Vary bad';
+         break;
+   case PasswordQuality::NONE:
+         $qualityName = 'None';
+         break;
+}
+
+echo '222233334444: ', $qualityName, ' (', $qualityNunber, ")\n";
 ```
