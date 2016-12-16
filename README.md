@@ -31,36 +31,51 @@ The usage is really simple:
 
 ```php
 use Messier\PWQCheck\QualityCheck;
+use Messier\PWQCheck\PasswordQuality;
 
 $check = new QualityCheck(
    8,   // min length
    128, // max length
-   true // Use word list check?
+   true // Use word list check? (~550 most used - in year 2016 - simple english passwords)
 );
 
-$qualityNunber = $check->checkQuality( '222233334444' );
+$passwords = [
+   '222333444',
+   '222233334444',
+   'abcdefgh',
+   'AbCDEF',
+   'ABcDeFGh',
+   'P45sWord',
+   'P4S5wøRD',
+   'P4S5wøRD/$'
+];
 
-switch( $qualityNunber )
+foreach ( $passwords as $password )
 {
-   case PasswordQuality::HIGH:
-      $qualityName = 'Best/Highest';
-      break;
-   case PasswordQuality::GOOD:
+
+   $qualityNumber = $check->checkQuality( $password );
+   $qualityName   = 'None';
+
+   switch( $qualityNumber )
+   {
+      case PasswordQuality::HIGH:
+         $qualityName = 'Best/Highest';
+         break;
+      case PasswordQuality::GOOD:
          $qualityName = 'Good';
          break;
-   case PasswordQuality::MEDIUM:
+      case PasswordQuality::MEDIUM:
          $qualityName = 'Middle';
          break;
-   case PasswordQuality::BAD:
+      case PasswordQuality::BAD:
          $qualityName = 'Bad';
          break;
-   case PasswordQuality::VARY_BAD:
-         $qualityName = 'Vary bad';
+      case PasswordQuality::VERY_BAD:
+         $qualityName = 'Very bad';
          break;
-   case PasswordQuality::NONE:
-         $qualityName = 'None';
-         break;
-}
+   }
 
-echo '222233334444: ', $qualityName, ' (', $qualityNunber, ")\n";
+   echo '- Quality of password "', $password, ': ', $qualityName, ' (', $qualityNumber, ")\n";
+
+}
 ```
