@@ -75,7 +75,7 @@ foreach ( $passwords as $password )
          break;
    }
 
-   echo '- Quality of password "', $password, ': ', $qualityName, ' (', $qualityNumber, ")\n";
+   echo '- Quality of password "', $password, '": ', $qualityName, ' (', $qualityNumber, ")\n";
 
 }
 ```
