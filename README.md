@@ -79,3 +79,17 @@ foreach ( $passwords as $password )
 
 }
 ```
+
+The output looks like:
+
+```
+- Quality of password "222333444": Bad (2)
+- Quality of password "222233334444": Middle (3)
+- Quality of password "abcdefgh": Very bad (1)
+- Quality of password "AbCDEF": None (0)
+- Quality of password "ABcDeFGh": Very bad (1)
+- Quality of password "P45sWord": Middle (3)
+- Quality of password "P4S5wøRD": Good (4)
+- Quality of password "P4S5wøRD/$": Best/Highest (5)
+
+```
